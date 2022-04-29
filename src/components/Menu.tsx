@@ -13,7 +13,7 @@ const Menu = () => {
   return (
     <>
       <StyledNavbar>
-        <MenuIcon onClick={handleShowMenu}/>
+        <StyledMenuIcon show={toggleMenu} onClick={handleShowMenu}/>
         <MenuContainer show={toggleMenu}>
           <ul>
             <li className="list-link">Esto es un link</li>
@@ -34,11 +34,9 @@ type Props = {
   show: boolean;
 }
 
-// const MenuIconStyled = styled(MenuIcon)<Props>`
-//   z-index: ${(props) => props.show ? '10000000' : '0'};
-// `
-
 const StyledNavbar = styled.div`
+  margin-bottom: 1rem;
+  
   @media screen and (min-width: 700px){
     svg {
       position: absolute;
@@ -46,9 +44,6 @@ const StyledNavbar = styled.div`
     }
 
     div {
-      /* display: flex;
-      align-items: center;
-      justify-content: center; */
       position: static;
     }
     
@@ -56,6 +51,9 @@ const StyledNavbar = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
       li {
         margin: 10px;
       }
@@ -63,19 +61,30 @@ const StyledNavbar = styled.div`
   }
 `
 
+const StyledMenuIcon = styled(MenuIcon)<Props>`
+background-color: #fff;
+  position: fixed;
+  border-radius: 5px;
+  box-shadow: 0 0 8px -2px black;
+  top: 0;
+  margin: 1rem;
+  padding: .5rem;
+  z-index: 1000;
+`
+
 const MenuContainer = styled.div<Props>`
   width: 100%;
   height: 100%;
   background-color: red;
+  text-align: right;
   position: fixed;
   top: 0;
-  left: ${(props) => props.show ? '0' : '-100%'};
-  transition-property: left;
+  right: ${(props) => props.show ? '0' : '-100%'};
+  transition-property: right;
   transition-duration: .5s;
-  z-index: ${(props) => props.show ? '-100' : '0'};
   
   ul {
-    background-color: red;
+    background-color: blue;
   }
 `;
 

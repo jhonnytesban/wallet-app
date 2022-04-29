@@ -1,5 +1,5 @@
-import InfoWallet from "./components/InfoWallet";
 import Menu from "./components/Menu";
+import InfoWallet from "./components/InfoWallet";
 
 const App = () => {
   return (
