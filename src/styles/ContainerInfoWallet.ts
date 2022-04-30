@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ContainerInfoWallet = styled.div`
-  width: 80%;
   max-width: 400px;
   border-radius: 10px;
   box-shadow: 0px 2px 8px -4px black;

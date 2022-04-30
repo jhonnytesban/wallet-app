@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Menu from "./components/Menu";
 import InfoWallet from "./components/InfoWallet";
 import AccountBalance from "./components/AccountBalance";
@@ -7,11 +8,17 @@ const App = () => {
   return (
     <>
       <Menu />
-      <ActionComponent />
-      <InfoWallet />
-      <AccountBalance />
+      <ContainerApp>
+        <ActionComponent />
+        <InfoWallet />
+        <AccountBalance />
+      </ContainerApp>
     </>
   );
 }
+
+const ContainerApp = styled.div`
+  padding: 0 1rem;
+`
 
 export default App;
