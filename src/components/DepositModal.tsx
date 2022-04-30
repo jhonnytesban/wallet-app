@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Modal, TextField, Typography } from '@mui/material';
 
+//TODO: DepositModal necesita validar si es Transferencia y a que usuario o Deposito en la cuenta del usuario Dueño
+
 const DepositModal = ({open, handleClose}: Props) => {
 
   return (
