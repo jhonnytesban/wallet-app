@@ -1,21 +1,22 @@
-import { Modal, TextField, Typography } from '@mui/material';
+import styled from 'styled-components';
 import { Box } from '@mui/system';
+import { Modal, TextField, Typography } from '@mui/material';
 
 const DepositModal = ({open, handleClose}: Props) => {
 
   return (
-    <div>
+    <>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <StyledBox>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             ¿Desea Ingresar?
           </Typography>
-          <form>
+          <StyledForm>
             <TextField 
               required
               id="outlined-required"
@@ -25,10 +26,10 @@ const DepositModal = ({open, handleClose}: Props) => {
               sx={{ mt: 2, mb: 2}}
             />
             <input type="submit" value="Ingresar" />
-          </form>
-        </Box>
+          </StyledForm>
+        </StyledBox>
       </Modal>
-    </div>
+    </>
   );
 }
 
@@ -37,16 +38,26 @@ type Props = {
   handleClose: () => void;
 }
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '50%',
-  bgcolor: '#fff',
-  borderRadius: '10px',
-  boxShadow: 24,
-  p: 4,
-};
+const StyledBox = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 24px;
+  padding: 1rem;
+
+  @media screen and (min-width: 700px) {
+    width: initial;
+  }
+`
+
+const StyledForm = styled.form`
+  input {
+    display: block;
+  }
+`
 
 export default DepositModal
