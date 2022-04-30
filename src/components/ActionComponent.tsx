@@ -7,6 +7,9 @@ const ActionComponent = () => {
         <p>Ingresar</p>
       </li>
       <li>
+        <p>Invertir</p>
+      </li>
+      <li>
         <p>Transferencia</p>
       </li>
     </ContainerAction>
