@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { ContainerApp } from "../styles/ContainerApp";
 import { StyledContainerForm } from "../styles/ContainerForm";
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       <ContainerApp>
         <StyledContainerForm>
-          <h2>Inicio de Sesión</h2>
+          <h2>Registro de Usuario</h2>
           <form>
             <TextField 
               required
@@ -25,8 +24,7 @@ const Login = () => {
               sx={{ mb: 2}}
             />
             <div>
-              <input type="submit" value="Iniciar Sesión" />
-              <span>¿No tienes una cuenta? <Link to='/register' >Regístrate</Link></span>
+              <input type="submit" value="Registrar" />
             </div>
           </form>
         </StyledContainerForm>
@@ -35,4 +33,6 @@ const Login = () => {
   )
 }
 
-export default Login;
+
+
+export default Register;

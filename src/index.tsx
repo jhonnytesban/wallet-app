@@ -7,6 +7,7 @@ import App from './App';
 import Menu from './components/Menu';
 import TransferPage from './pages/TransferPage';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,6 +20,7 @@ root.render(
         <Route path='/' element={<App />}/>
         <Route path='/transfer' element={<TransferPage />}/>
         <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
