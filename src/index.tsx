@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import Menu from './components/Menu';
 import TransferPage from './pages/TransferPage';
+import Login from './pages/Login';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,6 +18,7 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}/>
         <Route path='/transfer' element={<TransferPage />}/>
+        <Route path='/login' element={<Login />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

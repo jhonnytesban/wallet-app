@@ -24,7 +24,6 @@ const DepositModal = ({open, handleClose}: Props) => {
               id="outlined-required"
               label="Dinero Ingresar"
               type="number"
-              defaultValue="Hello World"
               sx={{ mt: 2, mb: 2}}
             />
             <input type="submit" value="Ingresar" />
