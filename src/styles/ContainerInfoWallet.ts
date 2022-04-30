@@ -7,7 +7,6 @@ export const ContainerInfoWallet = styled.div`
   box-shadow: 0px 2px 8px -4px black;
   margin: auto;
   padding: 1rem;
-  margin-top: 4.5rem;
   margin-bottom: 2rem;
 `
 

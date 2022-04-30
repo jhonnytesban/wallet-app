@@ -8,7 +8,7 @@ interface Balance {
   expenses: number
 }
 
-const AccountBalance = () => {
+export const AccountBalance = () => {
   const [balanceData, setBalanceData] = useState<Balance[]>([
     {
       income: 1000,
