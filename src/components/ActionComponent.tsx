@@ -1,18 +1,29 @@
+import { Button } from "@mui/material";
+import { useState } from "react";
 import styled from "styled-components";
+import DepositModal from "./DepositModal";
 
 const ActionComponent = () => {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <ContainerAction>
-      <li>
-        <p>Ingresar</p>
-      </li>
-      <li>
-        <p>Invertir</p>
-      </li>
-      <li>
-        <p>Transferencia</p>
-      </li>
-    </ContainerAction>
+    <>
+      <ContainerAction>
+        <li>
+        <Button onClick={handleOpen}>Ingresar</Button>
+        </li>
+        <li>
+          <p>Invertir</p>
+        </li>
+        <li>
+          <p>Transferencia</p>
+        </li>
+      </ContainerAction>
+      <DepositModal open={open} handleClose={handleClose}/>
+    </>
   )
 }
 
