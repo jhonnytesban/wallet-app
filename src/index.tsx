@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Menu from './components/Menu';
-import { DepositPage } from './pages/DepositPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +15,6 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}/>
-        <Route path='/deposit' element={<DepositPage />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
