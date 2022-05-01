@@ -1,23 +1,11 @@
-import { BaseSyntheticEvent, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
 import { TextField } from "@mui/material";
-import { selectUser, logIn } from "../store/slice";
 import { ContainerApp } from "../styles/ContainerApp";
 import { StyledContainerForm } from "../styles/ContainerForm";
+import { useUser } from "../hooks/useUser";
 
 const Login = () => {
-  const { user } = useSelector(selectUser)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log(user)
-  }, [])
-
-  const handleLogin = (event: BaseSyntheticEvent): void => {
-    event.preventDefault()
-    dispatch(logIn())
-  }
+  const { handleChange, handleLogin, formData } = useUser();
   
 
   return (
@@ -31,12 +19,18 @@ const Login = () => {
               label="Nombre de Usuario"
               type="text"
               sx={{ mb: 2}}
-            />
+              name='userName'
+              value={formData.userName}
+              onChange={handleChange}
+              />
             <TextField 
               required
               label="Contraseña"
               type="password"
               sx={{ mb: 2}}
+              name='password'
+              value={formData.password}
+              onChange={handleChange}
             />
             <div>
               <input type="submit" value="Iniciar Sesión" />

@@ -1,13 +1,20 @@
 import styled from "styled-components"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-// import '../styles/Menu.css';
+import { useDispatch } from "react-redux";
+import { logout } from '../store/slice';
 
 const Menu = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   const handleShowMenu = (): void => {
     setToggleMenu(!toggleMenu)
+  }
+
+  const handleSession = () => {
+    setToggleMenu(!toggleMenu)
+    dispatch(logout())
   }
 
   return (
@@ -16,7 +23,7 @@ const Menu = () => {
         <StyledMenuIcon onClick={handleShowMenu}/>
         <MenuContainer showMenu={toggleMenu}>
           <ul>
-            <li className="list-link">Esto es un link</li>
+            <li onClick={handleSession} className="list-link">Cerrar Sesión</li>
             <li className="list-link">Esto es un link</li>
             <li className="list-link">Esto es un link</li>
             <li className="list-link">Esto es un link</li>
@@ -75,7 +82,7 @@ background-color: #fff;
 const MenuContainer = styled.div<Props>`
   width: 100%;
   height: 100%;
-  background-color: red;
+  /* background-color: red; */
   text-align: right;
   position: fixed;
   top: 0;

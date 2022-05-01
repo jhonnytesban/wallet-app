@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { reduceApp } from './slice'
 
-export const store =  configureStore({
+export const store = configureStore({
   reducer: {
     //TODO: Se supone que aquí irá el reducer 
     stateApp: reduceApp
