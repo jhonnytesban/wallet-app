@@ -6,10 +6,15 @@ export interface User {
   login: boolean | undefined;
 }
 
+export interface Movements {
+  user: string;
+  value: number;
+}
+
 export interface AppState {
   user: User;
   totalMoney: number;
-  movements: string[];
+  movements: Movements[];
   totalEspenses: number;
   totalIncome: number
 }
@@ -20,7 +25,7 @@ const initialState: AppState = {
     login: false
   },
   totalMoney: 500,
-  movements: ['usuario A', 'usuario B'],
+  movements: [],
   totalEspenses: 900,
   totalIncome: 1000
 }
@@ -30,23 +35,28 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     logIn: (state, action) => {
-      state.user.userName = action.payload
-      state.user.login = true
+      state.user.userName = action.payload;
+      state.user.login = true;
     },
     
     register: (state, action) => {
-      state.user.userName = action.payload
-      state.user.login = true
+      state.user.userName = action.payload;
+      state.user.login = true;
     },
 
     logout: (state) => {
-      state.user.login = false
+      state.user.login = false;
+    },
+
+    deposit: (state, action) => {
+      state.totalMoney += action.payload;
+      state.movements.push({user: 'Depósito', value: action.payload});
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { logIn, register, logout } = appSlice.actions
+export const { logIn, register, logout, deposit } = appSlice.actions
 
 export const selectUser = (state: RootState) => state.stateApp
 

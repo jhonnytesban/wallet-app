@@ -1,10 +1,38 @@
+import { BaseSyntheticEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from '@mui/system';
 import { Modal, TextField, Typography } from '@mui/material';
+import { deposit } from '../store/slice';
+import { useLocation } from 'react-router-dom';
 
-//TODO: DepositModal necesita validar si es Transferencia y a que usuario o Deposito en la cuenta del usuario Dueño
+//TODO: DepositModal necesita validar si es Transferencia y a que usuario
 
 const DepositModal = ({open, handleClose}: Props) => {
+  const [depositForm, setDepositForm] = useState<number>(0)
+
+  const location = useLocation();
+  const dispatch = useDispatch();
+  
+
+  const handleChange = (event: BaseSyntheticEvent): void => {
+    setDepositForm(parseInt(event.target.value));
+  }
+
+  const handleSubmit =  (event: BaseSyntheticEvent): void => {
+    event.preventDefault();
+    if (depositForm === 0 || depositForm < 0 ) {
+      alert('Los depósitos deben de ser superior a 0');
+      handleClose();
+      return;
+    }
+
+    if (location.pathname === '/') {
+      dispatch(deposit(depositForm));
+      handleClose();
+    }
+
+  }
 
   return (
     <>
@@ -18,13 +46,14 @@ const DepositModal = ({open, handleClose}: Props) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             ¿Desea Ingresar?
           </Typography>
-          <StyledForm>
+          <StyledForm onSubmit={handleSubmit}>
             <TextField 
               required
-              id="outlined-required"
               label="Dinero Ingresar"
               type="number"
               sx={{ mt: 2, mb: 2}}
+              name='depositForm'
+              onChange={handleChange}
             />
             <input type="submit" value="Ingresar" />
           </StyledForm>

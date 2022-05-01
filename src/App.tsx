@@ -19,7 +19,6 @@ const App = () => {
 
   return (
     <>
-
       <ContainerApp>
         <ActionComponent />
         <InfoWallet />

@@ -1,15 +1,20 @@
+import { useSelector } from 'react-redux';
+import { selectUser } from '../store/slice';
 import walletImage from '../images/purse.png';
 import { ContainerInfoWallet, InfoAccountWallet, InfoMovementWallet } from '../styles/ContainerInfoWallet';
+import InfoMovements from './InfoMovements';
 
 const InfoWallet = () => {
+  const { totalMoney, user } = useSelector(selectUser)
+
   return (
     <>
       <ContainerInfoWallet>
         <InfoAccountWallet>
-          <img src={walletImage} alt="" />
+          <img src={walletImage} alt="icon wallet" />
           <div>
-            <p>Cuenta ioBuilders</p>
-            <p>500$</p>
+            <p>Cuenta ioBuilders: {user.userName}</p>
+            <p>{totalMoney}$</p>
           </div>
         </InfoAccountWallet>
         <InfoMovementWallet>
@@ -17,18 +22,7 @@ const InfoWallet = () => {
             <p>Últimos Movimientos</p>
             <p>Ver más</p>
           </div>
-          <div>
-            <p>Cotización Autónomo</p>
-            <p>25$</p>
-          </div>
-          <div>
-            <p>Mercadona</p>
-            <p>158$</p>
-          </div>
-          <div>
-            <p>Farmacia chapi</p>
-            <p>10$</p>
-          </div>
+          <InfoMovements />
         </InfoMovementWallet>
       </ContainerInfoWallet>
     </>
