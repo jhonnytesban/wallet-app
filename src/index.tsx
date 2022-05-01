@@ -1,29 +1,33 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Menu from './components/Menu';
-import TransferPage from './pages/TransferPage';
 import Login from './pages/Login';
+import Menu from './components/Menu';
+import { store } from './store/store';
 import Register from './pages/Register';
+import TransferPage from './pages/TransferPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Menu />
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}/>
-        <Route path='/transfer' element={<TransferPage />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/register' element={<Register />}/>
-        <Route path='*' element={<Navigate replace  to='/' />}/>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <Menu />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}/>
+          <Route path='/transfer' element={<TransferPage />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/register' element={<Register />}/>
+          <Route path='*' element={<Navigate replace  to='/' />}/>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

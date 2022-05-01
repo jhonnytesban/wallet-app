@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Bar, BarChart, ResponsiveContainer, YAxis } from 'recharts';
+import { Bar, BarChart, YAxis } from 'recharts';
 import { ContainerInfoWallet } from '../styles/ContainerInfoWallet';
 
 interface Balance {
@@ -20,13 +20,11 @@ export const AccountBalance = () => {
     <>
       <ContainerBalance>
         <div>
-          <ResponsiveContainer width={150} height={100}>
-            <BarChart  data={balanceData}>
+            <BarChart  width={150} height={100} data={balanceData}>
               <YAxis />
               <Bar dataKey="income" fill="#8884d8" />
               <Bar dataKey="expenses" fill="#82ca9d" />
-          </BarChart>
-          </ResponsiveContainer>
+            </BarChart>
         </div>
         <div>
           <StyledList>

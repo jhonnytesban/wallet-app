@@ -6,15 +6,15 @@ import { useState } from 'react';
 const Menu = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false)
 
-  const handleShowMenu = () => {
+  const handleShowMenu = (): void => {
     setToggleMenu(!toggleMenu)
   }
 
   return (
     <>
       <StyledNavbar>
-        <StyledMenuIcon show={toggleMenu} onClick={handleShowMenu}/>
-        <MenuContainer show={toggleMenu}>
+        <StyledMenuIcon onClick={handleShowMenu}/>
+        <MenuContainer showMenu={toggleMenu}>
           <ul>
             <li className="list-link">Esto es un link</li>
             <li className="list-link">Esto es un link</li>
@@ -31,7 +31,7 @@ const Menu = () => {
 //TODO: Refactor Menu component 
 
 type Props = {
-  show: boolean;
+  showMenu: boolean;
 }
 
 const StyledNavbar = styled.div`
@@ -61,7 +61,7 @@ const StyledNavbar = styled.div`
   }
 `
 
-const StyledMenuIcon = styled(MenuIcon)<Props>`
+const StyledMenuIcon = styled(MenuIcon)`
 background-color: #fff;
   position: fixed;
   border-radius: 5px;
@@ -79,7 +79,7 @@ const MenuContainer = styled.div<Props>`
   text-align: right;
   position: fixed;
   top: 0;
-  right: ${(props) => props.show ? '0' : '-100%'};
+  right: ${(props) => props.showMenu ? '0' : '-100%'};
   transition-property: right;
   transition-duration: .5s;
   

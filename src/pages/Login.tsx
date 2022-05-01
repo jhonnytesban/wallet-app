@@ -1,25 +1,39 @@
+import { BaseSyntheticEvent, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 import { TextField } from "@mui/material";
+import { selectUser, logIn } from "../store/slice";
 import { ContainerApp } from "../styles/ContainerApp";
 import { StyledContainerForm } from "../styles/ContainerForm";
 
 const Login = () => {
+  const { user } = useSelector(selectUser)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log(user)
+  }, [])
+
+  const handleLogin = (event: BaseSyntheticEvent): void => {
+    event.preventDefault()
+    dispatch(logIn())
+  }
+  
+
   return (
     <>
       <ContainerApp>
         <StyledContainerForm>
           <h2>Inicio de Sesión</h2>
-          <form>
+          <form onSubmit={handleLogin}>
             <TextField 
               required
-              id="outlined-required"
               label="Nombre de Usuario"
               type="text"
               sx={{ mb: 2}}
             />
             <TextField 
               required
-              id="outlined-required"
               label="Contraseña"
               type="password"
               sx={{ mb: 2}}
