@@ -1,26 +1,17 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Bar, BarChart, YAxis } from 'recharts';
 import { ContainerInfoWallet } from '../styles/ContainerInfoWallet';
-
-interface Balance {
-  income: number;
-  expenses: number
-}
+import { useSelector } from 'react-redux';
+import { selectUser } from '../store/slice';
 
 export const AccountBalance = () => {
-  const [balanceData, setBalanceData] = useState<Balance[]>([
-    {
-      income: 1000,
-      expenses: 900
-    }
-  ])
+  const { balance } = useSelector(selectUser);
 
   return (
     <>
       <ContainerBalance>
         <div>
-            <BarChart  width={150} height={100} data={balanceData}>
+            <BarChart  width={150} height={100} data={balance}>
               <YAxis />
               <Bar dataKey="income" fill="#8884d8" />
               <Bar dataKey="expenses" fill="#82ca9d" />
@@ -30,13 +21,13 @@ export const AccountBalance = () => {
           <StyledList>
             <li>
               <div>
-                <p>1000$</p>
+                <p>{balance[0].income}$</p>
                 <p>Ingresos</p>
               </div>
             </li>
             <li>
               <div>
-                <p>900$</p>
+                <p>{balance[0].expenses}$</p>
                 <p>Gastos</p>
               </div>
             </li>

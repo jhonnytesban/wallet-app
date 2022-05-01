@@ -17,7 +17,7 @@ const InfoMovements = () => {
           return (
             <div key={uuidv4()}>
               <p>{movement.user}</p>
-              <p>{movement.value}</p>
+              <p>{movement.value}$</p>
             </div>
           )
         })

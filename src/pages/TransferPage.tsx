@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { BaseSyntheticEvent, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DepositModal from "../components/DepositModal";
 import { ContainerApp } from "../styles/ContainerApp"
 import { ContainerInfoWallet } from "../styles/ContainerInfoWallet"
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/slice";
 
 const TransferPage = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [userTransfer, setUserTransfer] = useState<string>('');
 
-  const handleOpen = ():void => setOpen(true);
+  const { user } = useSelector(selectUser)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user.login === false) {
+      navigate('/login', {replace: true})
+    }
+  }, [user, navigate]) 
+
+  const handleOpen = (event: BaseSyntheticEvent):void => {
+    setUserTransfer(event.target.textContent);
+    setOpen(true);
+  };
+
   const handleClose = (): void => setOpen(false);
 
   return (
@@ -27,7 +43,7 @@ const TransferPage = () => {
           <p>Usuario C</p>
         </ContainerInfoWallet>
       </StyledContainerApp>
-      <DepositModal open={open} handleClose={handleClose}/>
+      <DepositModal open={open} handleClose={handleClose} userTransfer={userTransfer} />
     </>
   )
 }

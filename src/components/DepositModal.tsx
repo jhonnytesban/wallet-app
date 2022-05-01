@@ -1,14 +1,13 @@
-import { BaseSyntheticEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { Box } from '@mui/system';
-import { Modal, TextField, Typography } from '@mui/material';
-import { deposit } from '../store/slice';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { BaseSyntheticEvent, useState } from 'react';
+import { Modal, TextField, Typography } from '@mui/material';
+import { deposit, transfer } from '../store/slice';
 
-//TODO: DepositModal necesita validar si es Transferencia y a que usuario
 
-const DepositModal = ({open, handleClose}: Props) => {
+const DepositModal = ({open, handleClose, userTransfer}: Props) => {
   const [depositForm, setDepositForm] = useState<number>(0)
 
   const location = useLocation();
@@ -29,6 +28,11 @@ const DepositModal = ({open, handleClose}: Props) => {
 
     if (location.pathname === '/') {
       dispatch(deposit(depositForm));
+      handleClose();
+    }
+
+    if (location.pathname === '/transfer') {
+      dispatch(transfer({depositForm, userTransfer}));
       handleClose();
     }
 
@@ -65,6 +69,7 @@ const DepositModal = ({open, handleClose}: Props) => {
 
 type Props = {
   open: boolean;
+  userTransfer?: string;
   handleClose: () => void;
 }
 
