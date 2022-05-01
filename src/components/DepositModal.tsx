@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BaseSyntheticEvent, useState } from 'react';
 import { Modal, TextField, Typography } from '@mui/material';
 import { deposit, transfer } from '../store/slice';
@@ -10,6 +10,7 @@ import { deposit, transfer } from '../store/slice';
 const DepositModal = ({open, handleClose, userTransfer}: Props) => {
   const [depositForm, setDepositForm] = useState<number>(0)
 
+  const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   
@@ -34,6 +35,7 @@ const DepositModal = ({open, handleClose, userTransfer}: Props) => {
     if (location.pathname === '/transfer') {
       dispatch(transfer({depositForm, userTransfer}));
       handleClose();
+      navigate('/');
     }
 
   }
