@@ -40,14 +40,14 @@ export const appSlice = createSlice({
 
       if (userStorage !== undefined) {
         userStorage.totalMoney += action.payload;
-        userStorage.movements.push({user: 'Depósito', value: action.payload});
+        userStorage.movements.unshift({user: 'Depósito', value: action.payload});
         userStorage.balance[0].income += action.payload;
         const newUsersDataStorage = userStorageFilter.concat(userStorage);
         localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
       }
 
       state.totalMoney += action.payload;
-      state.movements.push({user: 'Depósito', value: action.payload});
+      state.movements.unshift({user: 'Depósito', value: action.payload});
       state.balance[0].income += action.payload;
 
     },
@@ -59,7 +59,7 @@ export const appSlice = createSlice({
 
       if (userStorage !== undefined) {
         userStorage.totalMoney -= action.payload.depositForm;
-        userStorage.movements.push({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
+        userStorage.movements.unshift({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
         userStorage.balance[0].expenses += action.payload.depositForm;
         const newUsersDataStorage = userStorageFilter.concat(userStorage);
         localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
@@ -68,7 +68,7 @@ export const appSlice = createSlice({
 
       //TODO: Añadir el historial de movimiento arriba NO ABAJO
       state.totalMoney -= action.payload.depositForm;
-      state.movements.push({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
+      state.movements.unshift({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
       state.balance[0].expenses += action.payload.depositForm;
     }
   },

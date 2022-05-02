@@ -38,7 +38,6 @@ const InfoWallet = () => {
         <InfoMovementWallet>
           <div>
             <p>Últimos Movimientos</p>
-            <p>Ver más</p>
           </div>
           <InfoMovements />
         </InfoMovementWallet>
