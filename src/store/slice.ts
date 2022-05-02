@@ -41,6 +41,7 @@ export const appSlice = createSlice({
       if (userStorage !== undefined) {
         userStorage.totalMoney += action.payload;
         userStorage.movements.push({user: 'Depósito', value: action.payload});
+        userStorage.balance[0].income += action.payload;
         const newUsersDataStorage = userStorageFilter.concat(userStorage);
         localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
       }

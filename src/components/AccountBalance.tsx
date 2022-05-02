@@ -3,15 +3,27 @@ import { Bar, BarChart, YAxis } from 'recharts';
 import { ContainerInfoWallet } from '../styles/ContainerInfoWallet';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../store/slice';
+import { useEffect, useState } from 'react';
+import { AppState } from '../interfaces/interfaces';
 
 export const AccountBalance = () => {
-  const { balance } = useSelector(selectUser);
+  const [userLocal, setUserLocal] = useState<AppState>()
+  const { balance, user } = useSelector(selectUser);
+
+  useEffect(() => {
+    const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+    if (usersDataStorage !== null) {
+      const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
+      setUserLocal(userDataStorage);
+    }
+  }, [balance])
+  
 
   return (
     <>
       <ContainerBalance>
         <div>
-            <BarChart  width={150} height={100} data={balance}>
+            <BarChart  width={150} height={100} data={userLocal?.balance}>
               <YAxis />
               <Bar dataKey="income" fill="#8884d8" />
               <Bar dataKey="expenses" fill="#82ca9d" />
@@ -21,13 +33,13 @@ export const AccountBalance = () => {
           <StyledList>
             <li>
               <div>
-                <p>{balance[0].income}$</p>
+                <p>{userLocal?.balance[0].income}$</p>
                 <p>Ingresos</p>
               </div>
             </li>
             <li>
               <div>
-                <p>{balance[0].expenses}$</p>
+                <p>{userLocal?.balance[0].expenses}$</p>
                 <p>Gastos</p>
               </div>
             </li>

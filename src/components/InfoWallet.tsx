@@ -12,8 +12,10 @@ const InfoWallet = () => {
 
   useEffect(() => {
     const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
-    const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
-    setUserLocal(userDataStorage);
+    if (usersDataStorage !== null) {
+      const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
+      setUserLocal(userDataStorage);
+    }
   }, [totalMoney])
   
 
