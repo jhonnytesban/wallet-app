@@ -49,7 +49,6 @@ export const appSlice = createSlice({
       state.totalMoney += action.payload;
       state.movements.unshift({user: 'Depósito', value: action.payload});
       state.balance[0].income += action.payload;
-
     },
     
     transfer: (state, action) => {
@@ -65,8 +64,6 @@ export const appSlice = createSlice({
         localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
       }
 
-
-      //TODO: Añadir el historial de movimiento arriba NO ABAJO
       state.totalMoney -= action.payload.depositForm;
       state.movements.unshift({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
       state.balance[0].expenses += action.payload.depositForm;
@@ -74,9 +71,8 @@ export const appSlice = createSlice({
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { logIn, register, logout, deposit, transfer } = appSlice.actions
+export const { logIn, register, logout, deposit, transfer } = appSlice.actions;
 
-export const selectUser = (state: RootState) => state.stateApp
+export const selectUser = (state: RootState) => state.stateApp;
 
-export const reduceApp =  appSlice.reducer
+export const reduceApp =  appSlice.reducer;

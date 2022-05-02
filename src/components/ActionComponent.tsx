@@ -5,7 +5,6 @@ import styled from "styled-components";
 import DepositModal from "./DepositModal";
 
 const ActionComponent = () => {
-  //TODO: Refactor Custom Hook
   const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = ():void => setOpen(true);
