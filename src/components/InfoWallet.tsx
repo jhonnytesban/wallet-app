@@ -16,7 +16,7 @@ const InfoWallet = () => {
       const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
       setUserLocal(userDataStorage);
     }
-  }, [totalMoney])
+  }, [totalMoney, user.userName])
   
 
   return (

@@ -14,7 +14,7 @@ const InfoMovements = () => {
       const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
       setUserLocal(userDataStorage);
     }
-  }, [movements])
+  }, [movements, user.userName])
   
 
   return (

@@ -16,7 +16,7 @@ export const AccountBalance = () => {
       const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
       setUserLocal(userDataStorage);
     }
-  }, [balance])
+  }, [balance, user.userName])
   
 
   return (

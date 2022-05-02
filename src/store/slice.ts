@@ -7,7 +7,7 @@ const initialState: AppState = {
     userName: undefined,
     login: false
   },
-  totalMoney: 500,
+  totalMoney: 0,
   movements: [],
   balance: [{
     expenses: 0,

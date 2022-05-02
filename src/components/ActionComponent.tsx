@@ -2,14 +2,9 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppState } from "../interfaces/interfaces";
 import DepositModal from "./DepositModal";
 
-interface Props {
-  userLocal: AppState | undefined;
-}
-
-const ActionComponent = ({userLocal}: Props) => {
+const ActionComponent = () => {
   //TODO: Refactor Custom Hook
   const [open, setOpen] = useState<boolean>(false);
 
