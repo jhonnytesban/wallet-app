@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BaseSyntheticEvent, useState } from 'react';
 import { Button, Modal, TextField, Typography } from '@mui/material';
-import { deposit, transfer } from '../store/slice';
+import { deposit, selectUser, transfer } from '../store/slice';
+import { useSelector } from 'react-redux';
 
 
 const DepositModal = ({open, handleClose, userTransfer}: Props) => {
   const [depositForm, setDepositForm] = useState<number>(0)
+  const { totalMoney } = useSelector(selectUser);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -31,9 +33,13 @@ const DepositModal = ({open, handleClose, userTransfer}: Props) => {
     }
 
     if (location.pathname === '/transfer') {
-      dispatch(transfer({depositForm, userTransfer}));
-      handleClose();
-      navigate('/');
+      if (totalMoney >= depositForm) {
+        dispatch(transfer({depositForm, userTransfer}));
+        handleClose();
+        navigate('/');
+        return
+      }
+      alert('No Tienes Tanto Dinero')
     }
 
   }
