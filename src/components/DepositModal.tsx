@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BaseSyntheticEvent, useState } from 'react';
-import { Modal, TextField, Typography } from '@mui/material';
+import { Button, Modal, TextField, Typography } from '@mui/material';
 import { deposit, transfer } from '../store/slice';
 
 
@@ -61,7 +61,7 @@ const DepositModal = ({open, handleClose, userTransfer}: Props) => {
               name='depositForm'
               onChange={handleChange}
             />
-            <input type="submit" value="Ingresar" />
+            <Button type="submit" variant="contained" >Ingresar</Button>
           </StyledForm>
         </StyledBox>
       </Modal>
@@ -92,7 +92,7 @@ const StyledBox = styled(Box)`
 `
 
 const StyledForm = styled.form`
-  input {
+  button {
     display: block;
   }
 `

@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { ContainerApp } from "../styles/ContainerApp";
@@ -32,7 +32,7 @@ const Register = () => {
               onChange={handleChange}
             />
             <div>
-              <input type="submit" value="Registrarse" onClick={handleLogin}/>
+              <Button type="submit" size="small" variant="contained">Registrarse</Button>
               <span>¿Tienes una cuenta? <Link to='/login' >Inicia Sesión</Link></span>
             </div>
           </form>

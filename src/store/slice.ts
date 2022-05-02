@@ -61,6 +61,7 @@ export const appSlice = createSlice({
     },
     
     transfer: (state, action) => {
+      //TODO: Añadir el historial de movimiento arriba NO ABAJO
       state.totalMoney -= action.payload.depositForm;
       state.movements.push({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
       state.balance[0].expenses += action.payload.depositForm;

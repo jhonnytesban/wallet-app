@@ -5,7 +5,7 @@ import { ContainerInfoWallet, InfoAccountWallet, InfoMovementWallet } from '../s
 import InfoMovements from './InfoMovements';
 
 const InfoWallet = () => {
-  const { totalMoney, user } = useSelector(selectUser)
+  const { totalMoney } = useSelector(selectUser)
 
   return (
     <>
@@ -13,7 +13,7 @@ const InfoWallet = () => {
         <InfoAccountWallet>
           <img src={walletImage} alt="icon wallet" />
           <div>
-            <p>Cuenta ioBuilders: {user.userName}</p>
+            <p>Cuenta ioBuilders</p>
             <p>{totalMoney}$</p>
           </div>
         </InfoAccountWallet>

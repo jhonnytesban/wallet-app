@@ -17,8 +17,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Menu />
       <BrowserRouter>
+        <Menu />
         <Routes>
           <Route path='/' element={<App />}/>
           <Route path='/transfer' element={<TransferPage />}/>

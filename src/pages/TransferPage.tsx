@@ -54,7 +54,7 @@ const StyledContainerApp = styled(ContainerApp)`
     margin-bottom: 1rem;
   }
 
-  @media screen and (min-width: 700px){
+  @media screen and (min-width: 900px){
     padding: 0 20rem;
     h2 {
       margin-bottom: 4rem;
