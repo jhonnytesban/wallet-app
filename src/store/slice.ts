@@ -34,9 +34,21 @@ export const appSlice = createSlice({
     },
 
     deposit: (state, action) => {
+      const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+      const userStorage = usersDataStorage.find((users) => users.user.userName === state.user.userName);
+      const userStorageFilter = usersDataStorage.filter((users) => users.user.userName !== state.user.userName);
+
+      if (userStorage !== undefined) {
+        userStorage.totalMoney += action.payload;
+        userStorage.movements.push({user: 'Depósito', value: action.payload});
+        const newUsersDataStorage = userStorageFilter.concat(userStorage);
+        localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
+      }
+
       state.totalMoney += action.payload;
       state.movements.push({user: 'Depósito', value: action.payload});
       state.balance[0].income += action.payload;
+
     },
     
     transfer: (state, action) => {

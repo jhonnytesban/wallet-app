@@ -3,9 +3,19 @@ import { selectUser } from '../store/slice';
 import walletImage from '../images/purse.png';
 import { ContainerInfoWallet, InfoAccountWallet, InfoMovementWallet } from '../styles/ContainerInfoWallet';
 import InfoMovements from './InfoMovements';
+import { useEffect, useState } from 'react';
+import { AppState } from '../interfaces/interfaces';
 
 const InfoWallet = () => {
-  const { totalMoney } = useSelector(selectUser)
+  const [userLocal, setUserLocal] = useState<AppState>();
+  const { totalMoney, user } = useSelector(selectUser);
+
+  useEffect(() => {
+    const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+    const userDataStorage = usersDataStorage.find((dataUser) => dataUser.user.userName === user.userName);
+    setUserLocal(userDataStorage);
+  }, [totalMoney])
+  
 
   return (
     <>
@@ -14,7 +24,7 @@ const InfoWallet = () => {
           <img src={walletImage} alt="icon wallet" />
           <div>
             <p>Cuenta ioBuilders</p>
-            <p>{totalMoney}$</p>
+            <p>{userLocal?.totalMoney ? userLocal?.totalMoney : totalMoney}$</p>
           </div>
         </InfoAccountWallet>
         <InfoMovementWallet>

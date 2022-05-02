@@ -9,11 +9,9 @@ import { deposit, transfer } from '../store/slice';
 
 const DepositModal = ({open, handleClose, userTransfer}: Props) => {
   const [depositForm, setDepositForm] = useState<number>(0)
-
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  
 
   const handleChange = (event: BaseSyntheticEvent): void => {
     setDepositForm(parseInt(event.target.value));

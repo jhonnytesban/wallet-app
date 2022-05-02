@@ -7,11 +7,10 @@ import { selectUser } from "./store/slice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppState } from "./interfaces/interfaces";
-// import { useDataPersistence } from "./hooks/useDataPersistence";
 
 const App = () => {
-  // const { usersData, saveFirstDataUSer } = useDataPersistence();
-  const [usersData, setUsersData] = useState<AppState[]>([])
+  const [usersData, setUsersData] = useState<AppState[]>([]);
+  const [userLocal, setUserLocal] = useState<AppState>();
   const userState = useSelector(selectUser);
 
 
@@ -19,36 +18,38 @@ const App = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-      if (user.login === false) {
-        navigate('/login', {replace: true});
-        return
-      }
+    if (user.login === false) {
+      navigate('/login', {replace: true});
+      return
+    }
 
-      const dataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!)
+    const dataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!)
       
-      //Guardo el dato del usuario en el storage si aun no se ha registrado ningun usuario
-      if (dataStorage?.length === 0 || dataStorage === null) {
+    //Guardo el dato del usuario en el storage si aun no se ha registrado ningun usuario
+    if (dataStorage?.length === 0 || dataStorage === null) {
+      setUsersData([userState])
+      localStorage.setItem('usersData', JSON.stringify([userState]))
+      console.log('save')
+    }
+    
+    //Añado al storage los datos del usuario, en caso de que ya existan otros datos de usuarios
+    if (dataStorage?.length > 0) {
+      const userStorage = dataStorage.find((data) => data.user.userName === user.userName);
+      setUserLocal(userStorage);
+      
+      if (!userStorage) {
+        const newDataUser = dataStorage.concat(userState)
+        localStorage.setItem('usersData', JSON.stringify(newDataUser))
         setUsersData([userState])
-        localStorage.setItem('usersData', JSON.stringify([userState]))
-        console.log('save', usersData)
       }
-
-      //Añado al storage los datos del usuario, en caso de que ya existan otros datos de usuarios
-      if (dataStorage?.length > 0) {
-        const isUser = dataStorage.some((data) => data.user.userName === user.userName);
-
-        if (!isUser) {
-          const newDataUser = dataStorage.concat(userState)
-          localStorage.setItem('usersData', JSON.stringify(newDataUser))
-        }
-      }
-
+    }
+    console.log(dataStorage);
   }, [user, navigate]) 
 
   return (
     <>
       <ContainerApp>
-        <ActionComponent />
+        <ActionComponent userLocal={userLocal}/>
         <InfoWallet />
         <AccountBalance />
       </ContainerApp>
