@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import styled from "styled-components"
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useSelector, useDispatch } from "react-redux";
 import { logout, selectUser } from '../store/slice';
-import { Link } from 'react-router-dom';
 
 const Menu = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false)
   const {user } = useSelector(selectUser);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleShowMenu = (): void => {
-    setToggleMenu(!toggleMenu)
+    setToggleMenu(!toggleMenu);
   }
 
   const handleSession = () => {
-    setToggleMenu(!toggleMenu)
-    dispatch(logout())
+    setToggleMenu(!toggleMenu);
+    dispatch(logout());
   }
 
   return (

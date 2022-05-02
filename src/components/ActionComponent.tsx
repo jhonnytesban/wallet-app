@@ -15,13 +15,10 @@ const ActionComponent = () => {
     <>
       <ContainerAction>
         <li>
-        <Button onClick={handleOpen}>Ingresar</Button>
+        <Button onClick={handleOpen} variant='outlined'>Ingresar</Button>
         </li>
         <li>
-          <p>Invertir</p>
-        </li>
-        <li>
-          <Link to='/transfer'>Transferencia</Link>
+          <Link to='/transfer'><Button  variant='outlined'>Transferencia</Button></Link>
         </li>
       </ContainerAction>
       <DepositModal open={open} handleClose={handleClose}/>
@@ -35,6 +32,10 @@ const ContainerAction = styled.ul`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto 2rem auto;
+
+  li a {
+    text-decoration: none;
+  }
 `
 
 export default ActionComponent
