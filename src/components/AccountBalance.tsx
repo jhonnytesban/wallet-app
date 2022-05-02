@@ -33,13 +33,13 @@ export const AccountBalance = () => {
           <StyledList>
             <li>
               <div>
-                <p>{userLocal?.balance[0].income}$</p>
+                <p>{userLocal?.balance[0].income ? (userLocal?.balance[0].income) : (0)}$</p>
                 <p>Ingresos</p>
               </div>
             </li>
             <li>
               <div>
-                <p>{userLocal?.balance[0].expenses}$</p>
+                <p>{userLocal?.balance[0].expenses ? (userLocal?.balance[0].expenses) : (0)}$</p>
                 <p>Gastos</p>
               </div>
             </li>

@@ -53,6 +53,19 @@ export const appSlice = createSlice({
     },
     
     transfer: (state, action) => {
+      const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+      const userStorage = usersDataStorage.find((users) => users.user.userName === state.user.userName);
+      const userStorageFilter = usersDataStorage.filter((users) => users.user.userName !== state.user.userName);
+
+      if (userStorage !== undefined) {
+        userStorage.totalMoney -= action.payload.depositForm;
+        userStorage.movements.push({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});
+        userStorage.balance[0].expenses += action.payload.depositForm;
+        const newUsersDataStorage = userStorageFilter.concat(userStorage);
+        localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
+      }
+
+
       //TODO: Añadir el historial de movimiento arriba NO ABAJO
       state.totalMoney -= action.payload.depositForm;
       state.movements.push({user: `Transferencia ${action.payload.userTransfer}`, value: action.payload.depositForm});

@@ -27,9 +27,8 @@ const App = () => {
       
     //Guardo el dato del usuario en el storage si aun no se ha registrado ningun usuario
     if (dataStorage?.length === 0 || dataStorage === null) {
-      setUsersData([userState])
-      localStorage.setItem('usersData', JSON.stringify([userState]))
-      console.log('save')
+      setUsersData([userState]);
+      localStorage.setItem('usersData', JSON.stringify([userState]));
     }
     
     //Añado al storage los datos del usuario, en caso de que ya existan otros datos de usuarios
@@ -38,12 +37,11 @@ const App = () => {
       setUserLocal(userStorage);
       
       if (!userStorage) {
-        const newDataUser = dataStorage.concat(userState)
-        localStorage.setItem('usersData', JSON.stringify(newDataUser))
-        setUsersData([userState])
+        const newDataUser = dataStorage.concat(userState);
+        localStorage.setItem('usersData', JSON.stringify(newDataUser));
+        setUsersData([userState]);
       }
     }
-    console.log(dataStorage);
   }, [user, navigate]) 
 
   return (
