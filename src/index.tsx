@@ -3,13 +3,13 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import './index.css';
 import App from './App';
 import Login from './pages/Login';
 import Menu from './components/Menu';
 import { store } from './store/store';
 import Register from './pages/Register';
 import TransferPage from './pages/TransferPage';
+import { GlobalStyled } from './styles/Index';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,6 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <GlobalStyled />
       <BrowserRouter>
         <Menu />
         <Routes>
