@@ -24,7 +24,7 @@ const InfoWallet = () => {
           <img src={walletImage} alt="icon wallet" />
           <div>
             <p>Cuenta ioBuilders</p>
-            <p>{userLocal?.totalMoney ? userLocal?.totalMoney : totalMoney}$</p>
+            <p>{userLocal?.totalMoney ? (userLocal?.totalMoney) : (totalMoney)}$</p>
           </div>
         </InfoAccountWallet>
         <InfoMovementWallet>
