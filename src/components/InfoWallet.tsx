@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { selectUser } from '../store/slice';
 import walletImage from '../images/purse.png';
-import { ContainerInfoWallet, InfoAccountWallet, InfoMovementWallet } from '../styles/ContainerInfoWallet';
 import InfoMovements from './InfoMovements';
-import { useEffect, useState } from 'react';
 import { AppState } from '../interfaces/interfaces';
+import { ContainerInfoWallet, InfoAccountWallet, InfoMovementWallet } from '../styles/ContainerInfoWallet';
 
 const InfoWallet = () => {
   const [userLocal, setUserLocal] = useState<AppState>();
@@ -27,10 +27,8 @@ const InfoWallet = () => {
           <div>
             <p>Cuenta ioBuilders</p>
             {
-              userLocal?.totalMoney !== null ? (
+              userLocal?.totalMoney !== null && (
                 <p>{userLocal?.totalMoney}$</p>
-              ): (
-                <p>{totalMoney}$</p>
               )
             }
           </div>

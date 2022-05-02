@@ -22,11 +22,38 @@ export const appSlice = createSlice({
     logIn: (state, action) => {
       state.user.userName = action.payload;
       state.user.login = true;
+
+
+      const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+      
+      if (usersDataStorage !== null) {
+        const userStorage = usersDataStorage.find((users) => users.user.userName === state.user.userName);
+        const userStorageFilter = usersDataStorage.filter((users) => users.user.userName !== state.user.userName);
+
+        if (userStorage !== undefined) {
+          state.totalMoney = userStorage.totalMoney;
+          const newUsersDataStorage = userStorageFilter.concat(userStorage);
+          localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
+        }
+      }
     },
     
     register: (state, action) => {
       state.user.userName = action.payload;
       state.user.login = true;
+
+      const usersDataStorage: AppState[] = JSON.parse(localStorage.getItem('usersData')!);
+      
+      if (usersDataStorage !== null) {
+        const userStorage = usersDataStorage.find((users) => users.user.userName === state.user.userName);
+        const userStorageFilter = usersDataStorage.filter((users) => users.user.userName !== state.user.userName);
+
+        if (userStorage !== undefined) {
+          state.totalMoney = userStorage.totalMoney;
+          const newUsersDataStorage = userStorageFilter.concat(userStorage);
+          localStorage.setItem('usersData', JSON.stringify(newUsersDataStorage));
+        }
+      }
     },
 
     logout: (state) => {

@@ -1,11 +1,10 @@
 import { Box } from '@mui/system';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { BaseSyntheticEvent, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Modal, TextField, Typography } from '@mui/material';
 import { deposit, selectUser, transfer } from '../store/slice';
-import { useSelector } from 'react-redux';
 
 
 const DepositModal = ({open, handleClose, userTransfer}: Props) => {
@@ -40,6 +39,7 @@ const DepositModal = ({open, handleClose, userTransfer}: Props) => {
         return
       }
       alert('No Tienes Tanto Dinero')
+      navigate('/');
     }
 
   }
